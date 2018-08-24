@@ -4,16 +4,15 @@
   "description": "Discord bot by fabuss254",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "fabuss254",
   "license": "ISC",
-    "dependencies": {
-      "discord.js": "^11.3.2",
-      "discord.js-arbitrary-ffmpeg": "^1.0.0",
-      "ffmpeg": "0.0.4",
-      "ffmpeg-binaries": "^3.2.2-3",
-      "forever-monitor": "^1.7.1",
-      "opusscript": "0.0.6"
-    }
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "discord.js-arbitrary-ffmpeg": "^1.0.0",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-binaries": "^3.2.2-3"
+  }
 }

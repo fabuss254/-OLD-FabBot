@@ -7,24 +7,10 @@
 //VARIABLE CONST
 
 const Discord = require("discord.js");
-const Settings = require("./Data/Settings.json");
 const prefix = "f.";
 const fs = require("fs");
 const bot = new Discord.Client();
 const debug = true;
-
-//VARIABLE VAR
-
-var doc = new GoogleSpreadsheet('1GGpZ4QhxwGumud1-FTLiMYeWxOO98dg3k9zpTuDQJDY');
-let LocalData = []
-bot.commands = new Discord.Collection();
-var debug = true
-
-var LocalConfig = {}
-var Ready = {
-    "Sheet1": false,
-    "Sheet2": false
-}
 
 //TRAITEMENT
 
@@ -91,79 +77,8 @@ bot.on("message", async message => {
   };
 });
 
-bot.on("guildMemberAdd", async Member => {
-    if(Ready.Sheet1 && Ready.Sheet2){
-        if (LocalConfig.LockJoin == "oui"){
-            Member.send("Le serveur est en lockjoin pour une raison inconnu, merci de rejoindre le serveur plus tard!");
-            Member.kick("Lockjoin actif");
-        };
-    };
-});
-/*
-bot.on("message", async function(message) {
-    if (message.author.equals(bot.user)) return;
-    var args = message.content.substring(prefix.length).split (" ");
-    if (!message.content.startsWith(prefix)) return;
-    switch (args[0].toLowerCase()) {
 
-
-case "clearrole":
-    if (message.guild.id === "337863843281764372"){
-            if (message.author.id === message.guild.ownerID || message.author.id === "274240989944610827"){
-                message.channel.send("***END NOW ?!***").then(msg => {
-                    const collector = msg.createReactionCollector((reaction, user) => user.id === message.member.id);
-                    collector.on('collect', r => {
-                        collector.stop();
-                        const Whitelist = ["178131193768706048","274240989944610827","299605581142949888","337863324983230474"]
-                        const Mem = message.guild.members
-
-                        Mem.forEach(function(v,i){
-                            var IsWhitelist = false;
-                            Whitelist.forEach(function(v2){
-                                if (v.id === v2 || v.User.bot === true){
-                                    IsWhitelist = true;
-                                };
-                            });
-                            if (!IsWhitelist){
-                                v.removeRoles(v.roles, "Commande .clearrole");
-                                v.addRole("464451413947449354", "Commande .clearrole");
-                            };
-                        });
-                    });
-                    msg.react("✅")
-                });
-            }else{
-                message.delete();
-                message.channel.send("Tu n'as pas accés a cette commande");
-            }
-break;
-
-            
-        case "options":   
-            if (!args[1]){
-                var Label = new Discord.RichEmbed ()
-                .setColor("#FFFFFF")
-                .addField("Options du bot", "**``XpGainMin``** Modifier le nombre d'xp minimum gagner au cours de l'ecriture d'un message\n**``XpGainMax``** Modifier le nombre d'xp maximum gagner au cours de l'ecriture d'un message\n**``CanGetLevel``** Est ce que les membres du serveur peuvent gagner des niveaux? ``(oui/non)``\n**``LockJoin``** Kick les utilisateurs dés qu'ils rejoignent le serveur, permet de bloquer les raids bots")
-                message.channel.send(Label);
-            }else if(args[1].toLowerCase() == "cangetlevel"){
-                
-            }
-            break;
-            
-        default:
-            message.delete()
-            var errorcommand_embed = new Discord.RichEmbed ()
-                .setColor("#FF0000")
-                .addField("Désolé !", "Il y a une erreur avec votre requête !")
-                .addField("Raison :", "• La commande ``" + args[0] + "`` n'éxiste pas ! Vous pouvez faire ``" + prefix + "help`` pour obtenir la liste des commandes disponible !")
-            message.channel.send(errorcommand_embed)
-    }
-});
-*/
 bot.login(process.env.TOKEN);
-setAuth(function(){
-    console.log("Connected to spreadsheet!")
-});
 
 bot.on("error", err => {
     console.log(err);
