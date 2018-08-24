@@ -1,12 +1,12 @@
 {
-  "name": "slender-bot",
+  "name": "FabBot",
   "version": "1.0.0",
-  "description": "BY ZENFIX",
-  "main": "slender.js",
+  "description": "Discord bot by fabuss254",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "zenfix | fabuss254",
+  "author": "fabuss254",
   "license": "ISC",
     "dependencies": {
       "discord.js": "^11.3.2",
@@ -14,7 +14,6 @@
       "ffmpeg": "0.0.4",
       "ffmpeg-binaries": "^3.2.2-3",
       "forever-monitor": "^1.7.1",
-      "opusscript": "0.0.6",
-      "google-spreadsheet": "2.0.5"
+      "opusscript": "0.0.6"
     }
 }
