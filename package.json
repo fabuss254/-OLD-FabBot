@@ -1,5 +1,5 @@
 {
-  "name": "FabBot",
+  "name": "fabbot",
   "version": "1.0.0",
   "description": "Discord bot by fabuss254",
   "main": "server.js",
