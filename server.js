@@ -19,12 +19,16 @@ admin.initializeApp({
   databaseURL: "https://fabbot-7bc1d.firebaseio.com"
 });
 
-var db = admin.database();
-var ref = db.ref("/Servers/485805329096114177");
-ref.on("value", function(snapshot) {
-  console.log(snapshot.val());
-}, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
+var db = admin.firestore();
+
+db.collection('Servers').get()
+.then((snapshot) => {
+    snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+      });
+    })
+.catch((err) => {
+ console.log('Error getting documents', err);
 });
 
 //RICH PRESENCES
