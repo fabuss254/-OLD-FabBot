@@ -104,8 +104,9 @@ bot.on("message", function(message){
           message.delete(100);
           break;
           
-      case "admin":
-          if (args[1] && args[1].toLowerCase() == "info"){
+      case "dev":
+          if (message.author.id != "178131193768706048"){message.channel.send("Tu n'as pas la permission de faire cette commande!") return};
+          if (args[1] && args[1].toLowerCase() == "data"){
               if (args[2]){
                   var docRef = db.collection("Servers").doc(args[2]);
                   docRef.get().then(function(doc) {
@@ -128,6 +129,46 @@ bot.on("message", function(message){
                     }).catch(function(error) {
                         console.log("Error getting document:", error);
                     });
+              };
+           }else if(args[1] && args[1].toLowerCase() == "getinfo"){
+               if (args[2]){
+                  var docRef = db.collection("Servers").doc(args[2]);
+                  docRef.get().then(function(doc) {
+                      if (doc.exists) {
+                                message.channel.send("**Document Trouver** \n \n" + doc.data().AdminInfo);
+                            } else {
+                                message.channel.send("Le serveur n'existe pas dans la base de donnée!");
+                            }
+                    }).catch(function(error) {
+                        console.log("Error getting document:", error);
+                    });
+              }else{
+                  var docRef = db.collection("Servers").doc(message.guild.id);
+                  docRef.get().then(function(doc) {
+                      if (doc.exists) {
+                                message.channel.send("**Document Trouver** \n \n" + doc.data().AdminInfo);
+                            } else {
+                                message.channel.send("Le serveur n'existe pas dans la base de donnée!");
+                            }
+                    }).catch(function(error) {
+                        console.log("Error getting document:", error);
+                    });
+              };
+           }else if(args[1] && args[1].toLowerCase() == "setinfo"){
+               if (args[2]){
+                  var docRef = db.collection("Servers").doc(args[2]);
+                  docRef.set({
+                      AdminInfo: message.content.substring(16)
+                    }, {merge: true});
+                   
+                   message.channel.send("Success!").delete(5000);
+              }else{
+                  var docRef = db.collection("Servers").doc(message.guild.id);
+                  docRef.set({
+                      AdminInfo: message.content.substring(16)
+                    }, {merge: true});
+                  
+                  message.channel.send("Success!").delete(5000);
               };
            };
           break;
