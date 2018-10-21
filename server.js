@@ -108,9 +108,8 @@ bot.on("message", function(message){
           var docRef = db.collection("Servers").doc(message.guild.id);
           docRef.get().then(function(doc) {
               if (doc.exists) {
-                        message.channel.send("**Document Trouver** \n \n" + doc.data());
+                        message.channel.send("**Document Trouver** \n \n" + JSON.stringify(doc.data()));
                     } else {
-                        // doc.data() will be undefined in this case
                         message.channel.send("Le serveur n'existe pas dans la base de donnée!");
                     }
             }).catch(function(error) {
