@@ -11,7 +11,19 @@ const prefix = "f.";
 const bot = new Discord.Client();
 const debug = true;
 
-//TRAITEMENT
+//FIREBASE
+
+var admin = require("firebase-admin");
+admin.initializeApp({
+  credential: admin.credential.cert(process.env.GOOGLE_ACC),
+  databaseURL: "https://fabbot-7bc1d.firebaseio.com"
+});
+
+var db = admin.database();
+var ref = db.ref("Servers/485805329096114177");
+ref.once("value", function(v) {
+  console.log(v.val());
+});
 
 //RICH PRESENCES
 
