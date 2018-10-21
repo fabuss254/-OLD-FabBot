@@ -21,8 +21,10 @@ admin.initializeApp({
 
 var db = admin.database();
 var ref = db.ref("/Servers/485805329096114177");
-ref.once("value", function(v) {
-  console.log(v.val());
+ref.on("value", function(snapshot) {
+  console.log(snapshot.val());
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
 });
 
 //RICH PRESENCES
