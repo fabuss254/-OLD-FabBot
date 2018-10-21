@@ -155,22 +155,13 @@ bot.on("message", function(message){
                     });
               };
            }else if(args[1] && args[1].toLowerCase() == "setinfo"){
-               if (args[2]){
-                  var docRef = db.collection("Servers").doc(args[2]);
-                  docRef.set({
-                      AdminInfo: message.content.substring(16)
+              var docRef = db.collection("Servers").doc(message.guild.id);
+              docRef.set({
+                      "AdminInfo": message.content.substring(16)
                     }, {merge: true});
                    
-                   message.channel.send("Success!").then(function(message){message.delete(5000)});
-              }else{
-                  var docRef = db.collection("Servers").doc(message.guild.id);
-                  docRef.set({
-                      AdminInfo: message.content.substring(16)
-                    }, {merge: true});
-                  
-                  message.channel.send("Success!").then(function(message){message.delete(5000)});
+               message.channel.send("Success!").then(function(message){message.delete(5000)});
               };
-           };
           };
           break;
           
