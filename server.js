@@ -104,17 +104,32 @@ bot.on("message", function(message){
           message.delete(100);
           break;
           
-      case "getowner":
-          var docRef = db.collection("Servers").doc(message.guild.id);
-          docRef.get().then(function(doc) {
-              if (doc.exists) {
-                        message.channel.send("**Document Trouver** \n \n" + JSON.stringify(doc.data()));
-                    } else {
-                        message.channel.send("Le serveur n'existe pas dans la base de donnée!");
-                    }
-            }).catch(function(error) {
-                console.log("Error getting document:", error);
-            });
+      case "admin":
+          if (args[1] && args[1].toLowerCase() == "info"){
+              if (args[2]){
+                  var docRef = db.collection("Servers").doc(args[2]);
+                  docRef.get().then(function(doc) {
+                      if (doc.exists) {
+                                message.channel.send("**Document Trouver** \n \n" + JSON.stringify(doc.data()));
+                            } else {
+                                message.channel.send("Le serveur n'existe pas dans la base de donnée!");
+                            }
+                    }).catch(function(error) {
+                        console.log("Error getting document:", error);
+                    });
+              }else{
+                  var docRef = db.collection("Servers").doc(message.guild.id);
+                  docRef.get().then(function(doc) {
+                      if (doc.exists) {
+                                message.channel.send("**Document Trouver** \n \n" + JSON.stringify(doc.data()));
+                            } else {
+                                message.channel.send("Le serveur n'existe pas dans la base de donnée!");
+                            }
+                    }).catch(function(error) {
+                        console.log("Error getting document:", error);
+                    });
+              };
+           };
           break;
           
       default:
