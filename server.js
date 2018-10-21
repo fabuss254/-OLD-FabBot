@@ -15,7 +15,7 @@ const debug = true;
 
 var admin = require("firebase-admin");
 admin.initializeApp({
-  credential: admin.credential.cert(process.env.GOOGLE_ACC),
+  credential: admin.credential.cert(JSON.parse(process.env.GOOGLE_ACC)),
   databaseURL: "https://fabbot-7bc1d.firebaseio.com"
 });
 
