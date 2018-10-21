@@ -105,7 +105,7 @@ bot.on("message", function(message){
           break;
           
       case "dev":
-          if (message.author.id != "178131193768706048"){message.channel.send("Tu n'as pas la permission de faire cette commande!") return};
+          if (message.author.id != "178131193768706048"){message.channel.send("Tu n'as pas la permission de faire cette commande!")}else{
           if (args[1] && args[1].toLowerCase() == "data"){
               if (args[2]){
                   var docRef = db.collection("Servers").doc(args[2]);
@@ -171,6 +171,7 @@ bot.on("message", function(message){
                   message.channel.send("Success!").delete(5000);
               };
            };
+          };
           break;
           
       default:
