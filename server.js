@@ -161,14 +161,14 @@ bot.on("message", function(message){
                       AdminInfo: message.content.substring(16)
                     }, {merge: true});
                    
-                   message.channel.send("Success!").delete(5000);
+                   message.channel.send("Success!").then(function(message){message.delete(5000)});
               }else{
                   var docRef = db.collection("Servers").doc(message.guild.id);
                   docRef.set({
                       AdminInfo: message.content.substring(16)
                     }, {merge: true});
                   
-                  message.channel.send("Success!").delete(5000);
+                  message.channel.send("Success!").then(function(message){message.delete(5000)});
               };
            };
           };
