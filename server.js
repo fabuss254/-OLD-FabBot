@@ -20,7 +20,7 @@ admin.initializeApp({
 });
 
 var db = admin.database();
-var ref = db.ref("Servers/485805329096114177");
+var ref = db.ref("database/firestore/data/Servers/485805329096114177");
 ref.once("value", function(v) {
   console.log(v.val());
 });
