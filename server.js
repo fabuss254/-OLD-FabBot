@@ -43,7 +43,17 @@ bot.on("message", async message => {
           message.delete(100);
           break;
           
-      case default:
+      case "help":
+          message.channel.send("Voici l'aide:");
+          message.delete(100);
+          break;
+          
+      case "install":
+          message.channel.send("Installation de module...");
+          message.delete(100);
+          break;
+          
+      default:
           message.channel.send("Commande inconnu");
           break;
   };
