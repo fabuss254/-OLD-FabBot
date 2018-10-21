@@ -18,7 +18,7 @@ const debug = true;
 var HelpEmbed = new Discord.RichEmbed()
 .setTitle("__**Liste des commandes**__")
 .setDescription("**Voici la listes des commandes disponibles au bot, trier par modules**")
-.addField("Normal","**Help <commande>** - Donne des infos suplémentaire sur une commande\n**Install <module>** - Installer un module (Voir si dessous pour la liste des modules disponibles)\n**Uninstall <module>** - Desinstaller un module")
+.addField("Normal","**Cmd** - Donne la liste des commandes\n**Help <commande>** - Donne des infos suplémentaire sur une commande\n**Install <module>** - Installer un module (Voir si dessous pour la liste des modules disponibles)\n**Uninstall <module>** - Desinstaller un module")
 .addField("VCS","**Send** - Envoyer un message simple dans le vcs\n**Channel** - Regler le salon qui est utiliser pour vcs")
 .addField("Capcha","**Verify** - Demander une verification (manuelle)\n**Auto-Verif** - [ADMIN]Mettre le bot en verification automatique\n**SetRole** - [ADMIN]Regler le role aprés verification\n**WelcomeMessage** - [ADMIN]Regler le message de bienvenue (envoyer quand la verification automatique est activer)")
 .addField("Musique","Work in progress...");
@@ -59,7 +59,7 @@ var HelpEmbed = new Discord.RichEmbed()
 
 bot.on('ready', function(){
     bot.user.setStatus('Online'); // En ligne : 'Online' | Inactif : 'idle' | Ne pas déranger : 'dnd' | Invisible 'invisible'
-    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs | " + bot.users.size + " utilisateurs", {
+    bot.user.setActivity(prefix + "cmd | " + bot.guilds.size + " serveurs | " + bot.users.size + " utilisateurs", {
         'type': 'STREAMING',
         'url': "https://twitch.tv/fabuss255"
     },
@@ -83,7 +83,7 @@ bot.on("message", function(message){
           message.delete(100);
           break;
           
-      case "help":
+      case "cmd":
           message.channel.send(HelpEmbed);
           message.delete(100);
           break;
