@@ -157,7 +157,7 @@ bot.on("message", function(message){
            }else if(args[1] && args[1].toLowerCase() == "setinfo"){
               var docRef = db.collection("Servers").doc(message.guild.id);
               docRef.set({
-                      "AdminInfo": message.content.substring(16)
+                      "AdminInfo": message.content.substring(14)
                     }, {merge: true});
                    
                message.channel.send("Success!").then(function(message){message.delete(5000)});
