@@ -19,17 +19,10 @@ admin.initializeApp({
   databaseURL: "https://fabbot-7bc1d.firebaseio.com"
 });
 
-var db = admin.firestore();
+const db = admin.firestore();
+const settings = {timestampsInSnapshots: true};
 
-db.collection('Servers').get()
-.then((snapshot) => {
-    snapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
-      });
-    })
-.catch((err) => {
- console.log('Error getting documents', err);
-});
+db.settings(settings);
 
 //RICH PRESENCES
 
@@ -109,6 +102,20 @@ bot.on("message", function(message){
       case "install":
           message.channel.send("Work in progress");
           message.delete(100);
+          break;
+          
+      case "getowner":
+          var docRef = db.collection("Servers").doc(message.guild.id);
+          docRef.get().then(function(doc) {
+              if (doc.exists) {
+                        message.channel.send("**Document Trouver** \n \n" + doc.data());
+                    } else {
+                        // doc.data() will be undefined in this case
+                        message.channel.send("Le serveur n'existe pas dans la base de donnée!");
+                    }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
           break;
           
       default:
