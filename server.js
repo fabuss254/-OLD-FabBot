@@ -13,11 +13,42 @@ const debug = true;
 
 //TRAITEMENT
 
+//RICH PRESENCES
 
+var HelpEmbed = {
+  "embed": {
+    "title": "__**Liste des commandes**__",
+    "description": "**Voici la listes des commandes disponibles au bot, trier par modules**",
+    "color": 0,
+    "author": {
+      "name": "author name",
+      "url": "https://discordapp.com",
+      "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"
+    },
+    "fields": [
+      {
+        "name": "Normal",
+        "value": "**Help <commande>** - Donne des infos suplémentaire sur une commande\n**Install <module>** - Installer un module (Voir si dessous pour la liste des modules disponibles)\n**Uninstall <module>** - Desinstaller un module"
+      },
+      {
+        "name": "VCS",
+        "value": "**Send** - Envoyer un message simple dans le vcs\n**Channel** - Regler le salon qui est utiliser pour vcs"
+      },
+      {
+        "name": "Capcha",
+        "value": "**Verify** - Demander une verification (manuelle)\n**Auto-Verif** - [ADMIN]Mettre le bot en verification automatique\n**SetRole** - [ADMIN]Regler le role aprés verification\n**WelcomeMessage** - [ADMIN]Regler le message de bienvenue (envoyer quand la verification automatique est activer)"
+      },
+      {
+        "name": "Musique",
+        "value": "Work in progress..."
+      }
+    ]
+  }
+}
 
 //EVENEMENT
 
-bot.on('ready', () => {
+bot.on('ready', function(){
     bot.user.setStatus('Online'); // En ligne : 'Online' | Inactif : 'idle' | Ne pas déranger : 'dnd' | Invisible 'invisible'
     bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs | " + bot.users.size + " utilisateurs", {
         'type': 'STREAMING',
@@ -33,7 +64,7 @@ bot.on('ready', () => {
 })
 
 
-bot.on("message", async message => {
+bot.on("message", function(message){
   if (message.author.equals(bot.user)) return;
   var args = message.content.substring(prefix.length).split (" ");
   if (!message.content.startsWith(prefix)) return;
@@ -44,12 +75,12 @@ bot.on("message", async message => {
           break;
           
       case "help":
-          message.channel.send("Voici l'aide:");
+          message.channel.send(new Discord.RichEmbed(HelpEmbed));
           message.delete(100);
           break;
           
       case "install":
-          message.channel.send("Installation de module...");
+          message.channel.send("Work in progress");
           message.delete(100);
           break;
           
