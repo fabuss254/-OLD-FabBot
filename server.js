@@ -15,7 +15,16 @@ const debug = true;
 
 //RICH PRESENCES
 
-var HelpEmbed = {
+var HelpEmbed = new Discord.RichEmbed()
+.setTitle("__**Liste des commandes**__")
+.setDescription("**Voici la listes des commandes disponibles au bot, trier par modules**")
+.addField("Normal","**Help <commande>** - Donne des infos suplémentaire sur une commande\n**Install <module>** - Installer un module (Voir si dessous pour la liste des modules disponibles)\n**Uninstall <module>** - Desinstaller un module")
+.addField("VCS","**Send** - Envoyer un message simple dans le vcs\n**Channel** - Regler le salon qui est utiliser pour vcs")
+.addField("Capcha","**Verify** - Demander une verification (manuelle)\n**Auto-Verif** - [ADMIN]Mettre le bot en verification automatique\n**SetRole** - [ADMIN]Regler le role aprés verification\n**WelcomeMessage** - [ADMIN]Regler le message de bienvenue (envoyer quand la verification automatique est activer)")
+.addField("Musique","Work in progress...");
+    
+/*    
+{
   "embed": {
     "title": "__**Liste des commandes**__",
     "description": "**Voici la listes des commandes disponibles au bot, trier par modules**",
@@ -45,7 +54,7 @@ var HelpEmbed = {
     ]
   }
 }
-
+*/
 //EVENEMENT
 
 bot.on('ready', function(){
@@ -75,7 +84,7 @@ bot.on("message", function(message){
           break;
           
       case "help":
-          message.channel.send(new Discord.RichEmbed(HelpEmbed));
+          message.channel.send(HelpEmbed);
           message.delete(100);
           break;
           
