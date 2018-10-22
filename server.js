@@ -147,7 +147,7 @@ bot.on("message", function(message){
                                     Modules: {VCS: true},
                                     VCS: {Channel: message.channel.id}
                                   }, {merge: true}).then(function(){
-                                    message.edit("Module installer! Ce channel va être utiliser comme salon vcs, si vous souhaitez changer, faite 'f.VCSChannel' dans le channel souhaitée."
+                                    message.edit("Module installer! Ce channel va être utiliser comme salon vcs, si vous souhaitez changer, faite 'f.VCSChannel' dans le channel souhaitée.")
                                   }));
                           }else{
                               
