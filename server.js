@@ -135,7 +135,7 @@ bot.on("message", function(message){
                    };
                };
           }else if(args[1] && args[1].toLowerCase() == "listservers"){
-              bot.guilds.foreach(function(v,i){
+              bot.guilds.array().foreach(function(v,i){
                   console.log(v.id + " | " + v.name)
               });
               
