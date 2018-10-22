@@ -180,6 +180,37 @@ bot.on("message", function(message){
   };
 });
 
+bot.on("guildCreate", function(guild){
+    var docRef = db.collection("Servers").doc(guild.id);
+    docRef.get().then(function(docs){
+        if(!docs.exists){
+            docRef.set({
+                AdminInfo: "None",
+                CanWarn: true,
+                IsBan: false,
+                IsPremium: false,
+                LogChannel: 0,
+                Modules: {
+                    Capcha: false,
+                    Musique: false,
+                    VCS: false
+                },
+                Owner: guild.ownerID,
+                OwnerTag: guild.owner.user.tag,
+                VCS: {
+                    Channel: 0,
+                    IsBan: false
+                }
+            });
+        }
+    });
+    
+    console.log("Guild ", guild.id, " added!")
+});
+
+bot.on("guildDelete", function(guild){
+    console.log("Guild ", guild.id, " removed!")
+}
 
 bot.login(process.env.TOKEN);
 
