@@ -67,11 +67,6 @@ bot.on("message", function(message){
           message.delete(100);
           break;
           
-      case "install":
-          message.channel.send("Work in progress");
-          message.delete(100);
-          break;
-          
       case "dev":
           if (message.author.id != "178131193768706048"){message.channel.send("Tu n'as pas la permission de faire cette commande!")}else{
           if (args[1] && args[1].toLowerCase() == "data"){
