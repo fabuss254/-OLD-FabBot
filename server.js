@@ -210,7 +210,7 @@ bot.on("guildCreate", function(guild){
 
 bot.on("guildDelete", function(guild){
     console.log("Guild ", guild.id, " removed!")
-}
+});
 
 bot.login(process.env.TOKEN);
 
