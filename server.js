@@ -124,7 +124,22 @@ bot.on("message", function(message){
                     }, {merge: true});
                    
                message.channel.send("Success!").then(function(message){message.delete(5000)});
-              };
+          }else if(args[1] && args[1].toLowerCase() == "leaveserver"){
+               if(args[2]){
+                   if(bot.guilds.get(args[2])){
+                      bot.guilds.get(args[2]).leave().then(function(){
+                        message.channel.send("Serveur quitter!");
+                      });
+                   }else{
+                      message.channel.send("Serveur introuvable!")
+                   };
+               };
+          }else if(args[1] && args[1].toLowerCase() == "listservers"){
+              bot.guilds.foreach(function(v,i){
+                  console.log(v.id + " | " + v.name)
+              });
+              
+              message.channel.send("Liste des serveurs afficher dans les logs du bot");
           };
           break;
           
