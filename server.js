@@ -140,7 +140,7 @@ bot.on("message", function(message){
               });
               
               message.channel.send("Liste des serveurs afficher dans les logs du bot");
-          };
+          }};
           break;
           
       case "install":
